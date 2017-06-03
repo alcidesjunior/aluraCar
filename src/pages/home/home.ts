@@ -1,20 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, LoadingController,AlertController } from 'ionic-angular';
 import { Http } from '@angular/http';
+import { EscolhaPage } from '../escolha/escolha';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements OnInit{
 
   public carros;
 
-  constructor(public navCtrl: NavController,
+  constructor(
+    public navCtrl: NavController,
     private _htpp: Http,
     private _loadingCtrl: LoadingController,
-    private _alertCtrl: AlertController) {
+    private _alertCtrl: AlertController
+  ) {
 
+
+
+  }
+  ngOnInit(){
     let loader = this._loadingCtrl.create({
       content: "Buscando novos carros. Aguarde..."
     });
@@ -27,7 +34,8 @@ export class HomePage {
       .then(carros => {
         loader.dismiss();
         this.carros = carros;
-      },err => {
+      })
+      .catch(err => {
         console.log(err);
         loader.dismiss();
         this._alertCtrl
@@ -37,6 +45,11 @@ export class HomePage {
           subTitle: "Não foi possível obter a lista de carros. Tente mais tarde."
         }).present();
       });
+  }
+  seleciona(carro){
+    this.navCtrl.push(EscolhaPage,{
+      carroSelecionado: carro
+    });
   }
 
 }

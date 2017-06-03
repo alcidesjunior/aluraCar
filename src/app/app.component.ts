@@ -4,8 +4,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { HomePage } from '../pages/home/home';
 
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
+
 @Component({
   templateUrl: 'app.html'
 })
