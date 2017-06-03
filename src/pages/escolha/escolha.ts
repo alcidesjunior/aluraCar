@@ -11,6 +11,7 @@ export class EscolhaPage{
   public acessorios: Acessorio[];
   private _precoTotal: number;
 
+
   constructor(public navParams: NavParams){
     this.carro = this.navParams.get('carroSelecionado');
     this._precoTotal = this.carro.preco;
